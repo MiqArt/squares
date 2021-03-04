@@ -74,7 +74,7 @@ const Game = observer(() => {
           }
         </CustomSelect>
         <ButtonStart onClick={startGame}>START</ButtonStart>
-        {error && <ErrorText>Choose mode!</ErrorText>}
+        <ErrorText error={error}>Choose mode!</ErrorText>
       </GameHeader>
       <GameBody setBorder={SquaresStore.squares.length > 0}>
         {
@@ -130,6 +130,8 @@ const Square = styled.div`
 `;
 
 const CustomSelect = styled.select`
+  font-family: 'Roboto', sans-serif;
+  /* font-weight: 500; */
   position: relative;
   width: 68%;
   height: 30px;
@@ -146,6 +148,10 @@ const CustomSelect = styled.select`
   background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 2px;
+
+  /* & option {
+    font-weight: 500;
+  } */
 `;
 
 const ButtonStart = styled.button`
@@ -171,5 +177,5 @@ const ErrorText = styled.span`
   font-weight: bold;
   position: absolute;
   top: 110%;
-  color: red;
+  color: ${({error}) => error ? 'red' : 'transparent'}; // it will help to load font, and keep ready to show.
 `;
